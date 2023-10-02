@@ -7,7 +7,7 @@ import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
 import { _stripSlashes, simplifySlug } from "../../util/path"
 import { Root } from "hast"
-import { pluralize } from "../../util/lang"
+import { hebrewPluralize } from "../../util/lang"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
@@ -37,7 +37,7 @@ function FolderContent(props: QuartzComponentProps) {
       <article>
         <p>{content}</p>
       </article>
-      <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>
+      <p dir="auto">{hebrewPluralize(allPagesInFolder.length, "מסמך", "מסמכים")} בתיקייה זו.</p>
       <div>
         <PageList {...listProps} />
       </div>
