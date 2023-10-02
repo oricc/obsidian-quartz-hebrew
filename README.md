@@ -8,6 +8,30 @@ This repo is forked from [Quartz v4](https://github.com/jackyzha0/quartz), modif
 Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
 Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility and ease-of-use.
 
-**If you are looking for Quartz v3, you can find it on the [`hugo` branch](https://github.com/jackyzha0/quartz/tree/hugo).**
+
+
+
+## How to start:
+
+### Step 1: Clone the project
+
+```
+git clone https://github.com/oricc/obsidian-quartz-hebrew.git
+cd quartz
+npm i
+npx quartz create
+```
+
+### Step 2: Create A vault
+
+1. Open Obsidian
+2. Use the "Open folder as vault" option
+3. Choose the "content" folder in the cloned repo
+
+### Step 3: Serve
+
+run `npm start` to open a local server of the site.
+
+### Step 4: Customize
 
 🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
