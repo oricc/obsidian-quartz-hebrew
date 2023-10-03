@@ -54,20 +54,35 @@ const icons = {
   quoteIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>`,
 }
 
+// const callouts = {
+//   note: icons.pencilIcon,
+//   abstract: icons.clipboardListIcon,
+//   info: icons.infoIcon,
+//   todo: icons.checkCircleIcon,
+//   tip: icons.flameIcon,
+//   success: icons.checkIcon,
+//   question: icons.helpCircleIcon,
+//   warning: icons.alertTriangleIcon,
+//   failure: icons.xIcon,
+//   danger: icons.zapIcon,
+//   bug: icons.bugIcon,
+//   example: icons.listIcon,
+//   quote: icons.quoteIcon,
+// }
 const callouts = {
-  note: icons.pencilIcon,
-  abstract: icons.clipboardListIcon,
-  info: icons.infoIcon,
-  todo: icons.checkCircleIcon,
-  tip: icons.flameIcon,
-  success: icons.checkIcon,
-  question: icons.helpCircleIcon,
-  warning: icons.alertTriangleIcon,
-  failure: icons.xIcon,
-  danger: icons.zapIcon,
-  bug: icons.bugIcon,
-  example: icons.listIcon,
-  quote: icons.quoteIcon,
+  note: 'pencil',
+  abstract: 'clipboard-list',
+  info: 'info',
+  todo: 'check-circle',
+  tip: 'flame',
+  success: 'check',
+  question: 'help-circle',
+  warning: 'alert-triangle',
+  failure: 'x',
+  danger: 'zap',
+  bug: 'bug',
+  example: 'list',
+  quote: 'quote',
 }
 
 const calloutMapping: Record<string, keyof typeof callouts> = {
@@ -333,14 +348,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>`
 
+
+                // <div class="callout-icon">${callouts[calloutType]}</div>
                 const titleHtml: HTML = {
                   type: "html",
                   value: `<div
                   class="callout-title"
                 >
-                  <div class="callout-icon">${callouts[calloutType]}</div>
-                  <i data-lucide="menu" class="callout-icon"></i>
-                  <div class="callout-title-inner">${title}</div>
+                <i data-lucide="${callouts[calloutType]}" class="callout-icon"></i>
+                <div class="callout-title-inner">${title}</div>
                   ${collapse ? toggleIcon : ""}
                 </div>`,
                 }
