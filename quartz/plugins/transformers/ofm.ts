@@ -78,6 +78,7 @@ const calloutMapping: Record<string, keyof typeof callouts> = {
   info: "info",
   todo: "todo",
   tip: "tip",
+  טיפ: "tip",
   hint: "tip",
   important: "tip",
   success: "success",
@@ -114,8 +115,8 @@ const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)?(#[^\[\]\|\#]+)?(\|[^\[\]
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
-const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
-const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
+const calloutRegex = new RegExp(/^\[\!(.+)\]([+-]?)/)
+const calloutLineRegex = new RegExp(/^> *\[\!.+\][+-]?.*$/, "gm")
 // (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
 // #(...)               -> capturing group, tag itself must start with #
 // (?:[-_\p{L}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
@@ -338,6 +339,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   class="callout-title"
                 >
                   <div class="callout-icon">${callouts[calloutType]}</div>
+                  <i data-lucide="menu" class="callout-icon"></i>
                   <div class="callout-title-inner">${title}</div>
                   ${collapse ? toggleIcon : ""}
                 </div>`,
