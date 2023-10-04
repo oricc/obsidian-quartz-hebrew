@@ -54,6 +54,27 @@ const icons = {
   quoteIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>`,
 }
 
+type Direction = 'ltr' | 'rtl' | 'auto';
+const RTL_CLASS = 'is-rtl';
+const AUTO_CLASS = 'is-auto';
+
+// Based on the Unicode Scripts section of:
+// https://www.regular-expressions.info/unicode.html 
+// Basically Arabic, Hebrew, Syriac and Thaana character classes are considered RTL (group 1) and all the 
+// others are considered LTR.
+const STRONG_DIR_REGEX = /(?:([\p{sc=Arabic}\p{sc=Hebrew}\p{sc=Syriac}\p{sc=Thaana}])|([\p{sc=Armenian}\p{sc=Bengali}\p{sc=Bopomofo}\p{sc=Braille}\p{sc=Buhid}\p{sc=Canadian_Aboriginal}\p{sc=Cherokee}\p{sc=Cyrillic}\p{sc=Devanagari}\p{sc=Ethiopic}\p{sc=Georgian}\p{sc=Greek}\p{sc=Gujarati}\p{sc=Gurmukhi}\p{sc=Han}\p{sc=Hangul}\p{sc=Hanunoo}\p{sc=Hiragana}\p{sc=Inherited}\p{sc=Kannada}\p{sc=Katakana}\p{sc=Khmer}\p{sc=Lao}\p{sc=Latin}\p{sc=Limbu}\p{sc=Malayalam}\p{sc=Mongolian}\p{sc=Myanmar}\p{sc=Ogham}\p{sc=Oriya}\p{sc=Runic}\p{sc=Sinhala}\p{sc=Tagalog}\p{sc=Tagbanwa}\p{sc=Tamil}\p{sc=Telugu}\p{sc=Thai}\p{sc=Tibetan}\p{sc=Yi}]))/u;
+
+const detectDirection = (s: string): Direction | null => {
+	const match = s.match(STRONG_DIR_REGEX);
+	if (match && match[1]) {
+		return 'rtl';
+	} else if (match && match[2]) {
+		return 'ltr';
+	}
+
+	return null;
+}
+
 // const callouts = {
 //   note: icons.pencilIcon,
 //   abstract: icons.clipboardListIcon,
@@ -353,7 +374,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 const titleHtml: HTML = {
                   type: "html",
                   value: `<div
-                  class="callout-title"
+                  class="callout-title",
+                  style="direction: ${detectDirection(titleContent)};"
                 >
                 <i data-lucide="${callouts[calloutType]}" class="callout-icon"></i>
                 <div class="callout-title-inner">${title}</div>
