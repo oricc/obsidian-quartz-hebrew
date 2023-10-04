@@ -33,7 +33,9 @@ export interface GlobalConfiguration {
    *   Quartz will avoid using this as much as possible and use relative URLs most of the time
    */
   baseUrl?: string
-  theme: Theme
+  theme: Theme,
+  // Modules to copy to the static folder for use in rendering (instead of a CDN)
+  modulesToInclude: string[]
 }
 
 export interface QuartzConfig {

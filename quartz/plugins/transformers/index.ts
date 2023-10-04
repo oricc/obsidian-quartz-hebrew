@@ -10,3 +10,4 @@ export { SyntaxHighlighting } from "./syntax"
 export { TableOfContents } from "./toc"
 export { HardLineBreaks } from "./linebreaks"
 export { TextDirection } from "./textDirection"
+export { Mermaid } from './mermaid'

@@ -41,6 +41,10 @@ const config: QuartzConfig = {
         },
       },
     },
+    modulesToInclude: [
+      'mermaid',
+      'katex'
+    ]
   },
   plugins: {
     transformers: [
@@ -57,6 +61,7 @@ const config: QuartzConfig = {
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.Description(),
       Plugin.TextDirection(),
+      Plugin.Mermaid(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
