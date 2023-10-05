@@ -1,3 +1,8 @@
+---
+tags: code
+---
+#code 
+
 
 ```python
 print("hi")
