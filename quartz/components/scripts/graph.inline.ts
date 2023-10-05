@@ -149,9 +149,11 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     const isCurrent = d.id === slug
     if (isCurrent) {
       return "var(--secondary)"
-    } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
+    } else if (d.id.startsWith("tags/")){
+      return "red"
+    } else if (visited.has(d.id)) {
       return "var(--tertiary)"
-    } else {
+    }  else {
       return "var(--gray)"
     }
   }
