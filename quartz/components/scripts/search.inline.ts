@@ -222,7 +222,7 @@ document.addEventListener("nav", async (e: unknown) => {
     const button = document.createElement("button")
     button.classList.add("result-card")
     button.id = slug
-    button.innerHTML = `<h3>${title}</h3>${htmlTags}<p>${content}</p>`
+    button.innerHTML = `<h3 dir="auto">${title}</h3>${htmlTags}<p dir="auto">${content}</p>`
     button.addEventListener("click", () => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))

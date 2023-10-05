@@ -9,7 +9,7 @@ import { QuartzPluginData } from "../plugins/vfile"
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = {
   title: "מגלה הקבצים",
-  folderClickBehavior: "collapse",
+  folderClickBehavior: "link",
   folderDefaultState: "collapsed",
   useSavedState: true,
   sortFn: (a, b) => {
@@ -96,6 +96,7 @@ export default ((userOpts?: Partial<Options>) => {
           data-tree={jsonTree}
         >
           <h1>{opts.title}</h1>
+          {/* The svg is for the open/close arrow */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
