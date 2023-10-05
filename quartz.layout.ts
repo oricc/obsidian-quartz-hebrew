@@ -8,7 +8,7 @@ export const sharedPageComponents: SharedLayout = {
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/oricc/obsidian-quartz-hebrew.git",
-      "666": "",
+      "6": "",
     },
   }),
 }
